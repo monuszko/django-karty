@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import MenuCard, Dish
+
+admin.site.register(MenuCard)
+admin.site.register(Dish)
