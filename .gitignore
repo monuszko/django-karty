@@ -1,0 +1,6 @@
+*.swp
+*.pyc
+
+manage.py
+
+project_karty/*
