@@ -7,7 +7,7 @@ class MenuCard(models.Model):
     pub_date = models.DateTimeField("Publication date", auto_now_add=True)
     mod_date = models.DateTimeField("Modification date", auto_now=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -22,7 +22,7 @@ class Dish(models.Model):
     time = models.DurationField("Preparation time")
     vege = models.BooleanField("Vegetarian", default=False, help_text="Is it vegetarian ?")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     class Meta:
