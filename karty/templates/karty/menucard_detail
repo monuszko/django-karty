@@ -1,0 +1,7 @@
+<h1>{{ menucard.name }}</h1>
+<p>{{ menucard.desc }}</p>
+<ol>
+{% for dish in menucard.dish_set.all %}
+    <li>{{ dish.name }}</li>
+{% endfor %}
+</ol>

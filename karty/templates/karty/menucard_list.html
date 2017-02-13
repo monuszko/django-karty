@@ -1,0 +1,6 @@
+<h1>Menu cards</h1>
+<ol>
+{% for menucard in menucard_list %}
+<li><a href="{{ menucard.get_absolute_url }}">{{ menucard.name }} </a>({{ menucard.dish_set.count }} dishes)</li>
+{% endfor %}
+</ol>

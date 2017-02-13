@@ -1,5 +1,7 @@
 from django.db import models
 
+from django.core.urlresolvers import reverse
+
 
 class MenuCard(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -9,6 +11,9 @@ class MenuCard(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('karty:detail', args=(self.pk,))
 
 
 class Dish(models.Model):

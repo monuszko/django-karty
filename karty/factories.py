@@ -18,7 +18,7 @@ class DishFactory(factory.django.DjangoModelFactory):
         model = Dish 
 
     menucard = factory.SubFactory(MenuCardFactory)
-    price = factory.Sequence(lambda n: n)
+    price = factory.Sequence(lambda n: n % 25)
     time = timedelta(minutes=25)
 
     name = factory.Sequence(lambda n: "Dish %d" % n)
