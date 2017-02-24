@@ -1,0 +1,36 @@
+{% with request.GET.sort_by as sort_by %}
+    <p>Sort by:</p>
+    <p>
+    {% if sort_by %}
+        <a href="?page={{ page.number }}">default</a>
+    {% else %}
+        default 
+    {% endif %}
+
+    {% if sort_by != 'name' %}
+        <a href="?page={{ page.number }}&sort_by=name">name </a>
+    {% else %}
+        name 
+    {% endif %}
+
+    {% if sort_by != 'num_dishes' %}
+        <a href="?page={{ page.number }}&sort_by=num_dishes">number of dishes</a>
+    {% else %}
+        number of dishes
+    {% endif %}
+    </p>
+
+
+
+    {% if page.has_previous %}
+        <a href="?page={{ page.previous_page_number }}{% if sort_by %}&sort_by={{ sort_by }}{% endif %}">Previous</a>
+    {% else %}
+        Previous    
+    {% endif %}
+
+    {% if page.has_next %}
+    <a href="?page={{ page.next_page_number }}{% if sort_by %}&sort_by={{ sort_by }}{% endif %}">Next</a>
+    {% else %}
+        Next
+    {% endif %}
+{% endwith %}
