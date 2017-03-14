@@ -1,7 +1,10 @@
 <h1>Menu cards</h1>
 <ol>
 {% for menucard in menucards %}
-<li><a href="{{ menucard.get_absolute_url }}">{{ menucard.name }} </a>({{ menucard.dish_set.count }} dishes)</li>
+<li>
+    <a href="{{ menucard.get_absolute_url }}">{{ menucard.name }} </a>({{ menucard.dish_set.count }} dishes, modified: {{ menucard.mod_date|date:"d M Y" }})
+    <p>{{ menucard.desc }} </p>
+</li>
 {% endfor %}
 </ol>
 

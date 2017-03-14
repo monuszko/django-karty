@@ -1,7 +1,11 @@
+from datetime import timedelta
+
 from django.db import models
 
 from django.core.urlresolvers import reverse
 
+
+AT_LEAST_OLDER = timedelta(minutes=30)
 
 class MenuCard(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -14,6 +18,15 @@ class MenuCard(models.Model):
 
     def get_absolute_url(self):
         return reverse('karty:detail', args=(self.pk,))
+
+    def was_modified(self):
+        """
+        Template method to make it easier no to display trivial edits soon
+        after publication.
+        """
+        if self.mod_date > self.pub_date + AT_LEAST_OLDER:
+            return True
+        return False
 
 
 class Dish(models.Model):
