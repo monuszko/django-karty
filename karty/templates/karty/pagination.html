@@ -1,36 +1,53 @@
-{% with request.GET.sort_by as sort_by %}
-    <p>Sort by:</p>
-    <p>
-    {% if sort_by %}
-        <a href="?page={{ page.number }}">default</a>
-    {% else %}
-        default 
-    {% endif %}
-    /
-    {% if sort_by != 'name' %}
-        <a href="?page={{ page.number }}&sort_by=name">name </a>
-    {% else %}
-        name 
-    {% endif %}
-    /
-    {% if sort_by != 'num_dishes' %}
-        <a href="?page={{ page.number }}&sort_by=num_dishes">number of dishes</a>
-    {% else %}
-        number of dishes
-    {% endif %}
-    </p>
+{% load static %}
+
+<h4 id="pagination">Page {{ page.number }} of {{ page.paginator.num_pages }}</h4>
 
 
-
+<div id="normal-links">
+<p>
+<a id='prev-link'
     {% if page.has_previous %}
-        <a href="?page={{ page.previous_page_number }}{% if sort_by %}&sort_by={{ sort_by }}{% endif %}">Previous</a>
-    {% else %}
-        Previous    
+    href="{% url 'karty:index' %}{{ prev_qstring }}"
     {% endif %}
+    >Previous</a>
 
+
+<a id='next-link'
     {% if page.has_next %}
-    <a href="?page={{ page.next_page_number }}{% if sort_by %}&sort_by={{ sort_by }}{% endif %}">Next</a>
-    {% else %}
-        Next
+    href="{% url 'karty:index' %}{{ next_qstring }}"
     {% endif %}
-{% endwith %}
+    >Next</a>
+</p>
+
+<h4>Sorting:</h4>
+
+<a
+   {% if request.GET.ordering and request.GET.ordering != 'pk' %}
+   href="?page={{ page.number }}&ordering=pk"
+   {% endif %}
+    >Default</a> /
+
+
+<a
+   {% if request.GET.ordering != 'name' %}
+   href="?page={{ page.number }}&ordering=name"
+   {% endif %}
+    >Name</a> /
+
+<a
+   {% if request.GET.ordering != 'num_dishes' %}
+   href="?page={{ page.number }}&ordering=num_dishes"
+   {% endif %}
+   >Dish count</a>
+</div>
+
+<div id="xhr-links" class="hidden">
+<button {% if not page.has_previous %}disabled=true{% endif %} id="prev-page" data-rest-uri="{% url 'karty:api_index' %}{{ prev_qstring }}">Previous</button>
+<button {% if not page.has_next %}disabled=true{% endif %} id="next-page" data-rest-uri="{% url 'karty:api_index' %}{{ next_qstring }}">Next</button>
+
+<h4>Sorting:</h4>
+
+<button class="sort" id="sort-default" data-rest-uri="{% url 'karty:api_index' %}?ordering=pk">Default</button>
+<button class="sort" id="sort-name" data-rest-uri="{% url 'karty:api_index' %}?ordering=name">Name</button>
+<button class="sort" id="sort-dishes" data-rest-uri="{% url 'karty:api_index' %}?ordering=num_dishes">Dish count</button>
+</div>

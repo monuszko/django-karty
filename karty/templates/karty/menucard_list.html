@@ -1,11 +1,23 @@
+{% extends 'karty/base.html' %}
+{% load static %}
+
+{% block content %}
+
 <h1>Menu cards</h1>
-<ol>
-{% for menucard in menucards %}
+
+<ul id="menucards" data-num-pages="{{ page.paginator.num_pages }}">
+{% for menucard in page %}
 <li>
     <a href="{{ menucard.get_absolute_url }}">{{ menucard.name }} </a>({{ menucard.dish_set.count }} dishes, modified: {{ menucard.mod_date|date:"d M Y" }})
     <p>{{ menucard.desc }} </p>
 </li>
 {% endfor %}
-</ol>
+</ul>
 
-{% include 'karty/pagination.html' with page=menucards %}
+{% include 'karty/pagination.html' %}
+
+<script src="{% static 'karty/ajax.js' %}" type='text/javascript'></script>
+
+{% endblock content %}
+
+

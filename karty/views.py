@@ -1,29 +1,73 @@
-from django.shortcuts import render, get_object_or_404
 from django.db.models import Count
+from django.views.generic import ListView, DetailView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+from rest_framework.filters import OrderingFilter
+from rest_framework import generics
+
 from .models import MenuCard
+from .serializers import MenuCardSerializer
 
 
-def menucard_list(request):
-    sort_by = request.GET.get('sort_by')
-    sort_by = sort_by if sort_by in ('name', 'num_dishes') else 'pk'
+class MenuCardList(ListView):
+    queryset = MenuCard.public.all()
+    template_name = 'karty/menucard_list.html'
 
-    card_list = MenuCard.objects.annotate(num_dishes=Count('dish'))
-    card_list = card_list.exclude(num_dishes=0).order_by(sort_by)
+    def get_context_data(self, **kwargs):
+        context = super(MenuCardList, self).get_context_data(**kwargs)
 
-    paginator = Paginator(card_list, 10)
-    page = request.GET.get('page')
-    try:
-        menucards = paginator.page(page)
-    except PageNotAnInteger:
-        menucards = paginator.page(1)
-    except EmptyPage:
-        menucards = paginator.page(paginator.num_pages)
+        paginator = Paginator(self.get_queryset(), 10)
+        pagenr = self.request.GET.get('page')
+        try:
+            page = paginator.page(pagenr)
+        except PageNotAnInteger:
+            page = paginator.page(1)
+        except EmptyPage:
+            page = paginator.page(paginator.num_pages)
 
-    return render(request, 'karty/menucard_list.html', {'menucards': menucards})
+        context['page'] = page
+        # '?' technically not a part of querystring, saves one 'if' in template
+
+        prev_qstring = ''
+        if page.has_previous():
+            prev_qstring = self.request.GET.copy()
+            prev_qstring['page'] = page.previous_page_number()
+            prev_qstring = '?' + prev_qstring.urlencode()
+
+        next_qstring = ''
+        if page.has_next():
+            next_qstring = self.request.GET.copy()
+            next_qstring['page'] = page.next_page_number()
+            next_qstring = '?' + next_qstring.urlencode()
+
+        context['prev_qstring'] = prev_qstring
+        context['next_qstring'] = next_qstring
+        return context
 
 
-def menucard_detail(request, menucard_id):
-    menucard = get_object_or_404(MenuCard, pk=menucard_id)
-    return render(request, 'karty/menucard_detail', {'menucard': menucard})
+    def get_queryset(self, **kwargs):
+        qs = self.queryset
+        ordering = self.request.GET.get('ordering')
+        if ordering in ('name' ,'num_dishes'):
+            qs = qs.order_by(ordering)
+        return qs
+
+
+
+class MenuCardDetail(DetailView):
+    queryset = MenuCard.public.all()
+    template_name = 'karty/menucard_detail.html'
+    template_object_name='menucard'
+
+
+class APIMenuCardList(generics.ListAPIView):
+    queryset = MenuCard.public.all()
+    serializer_class = MenuCardSerializer
+    filter_backends = (OrderingFilter,)
+    ordering_fields = ('pk', 'name', 'num_dishes')
+    ordering = ('pk',)
+
+
+class APIMenuCardDetail(generics.RetrieveAPIView):
+    queryset = MenuCard.public.all()
+    serializer_class = MenuCardSerializer

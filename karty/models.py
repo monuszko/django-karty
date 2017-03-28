@@ -7,11 +7,20 @@ from django.core.urlresolvers import reverse
 
 AT_LEAST_OLDER = timedelta(minutes=30)
 
+
+class PublicMenuCardManager(models.Manager):
+    def get_queryset(self):
+        return super(PublicMenuCardManager, self).get_queryset().annotate(num_dishes=models.Count('dish')).exclude(num_dishes=0)
+
+
 class MenuCard(models.Model):
     name = models.CharField(max_length=50, unique=True)
     desc = models.TextField("Description", max_length=200)
     pub_date = models.DateTimeField("Publication date", auto_now_add=True)
     mod_date = models.DateTimeField("Modification date", auto_now=True)
+
+    objects = models.Manager()
+    public = PublicMenuCardManager()
 
     def __str__(self):
         return self.name
