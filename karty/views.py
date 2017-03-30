@@ -71,3 +71,4 @@ class APIMenuCardList(generics.ListAPIView):
 class APIMenuCardDetail(generics.RetrieveAPIView):
     queryset = MenuCard.public.all()
     serializer_class = MenuCardSerializer
+

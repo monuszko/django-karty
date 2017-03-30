@@ -2,3 +2,14 @@
 <h4>Added: {{ menucard.pub_date }} {% if menucard.was_modifed %}(modified: {{ menucard.mod_date }}){% endif %}</h4>
 
 <p>{{ menucard.desc }}
+
+<ol>
+    {% for dish in menucard.dishes.all %}
+    <li>{{ dish.name }}
+        {% if dish.photo %}
+        <img src="{{ dish.photo.url }}"/>
+        {% endif %}
+    
+    </li>
+    {% endfor %}
+</ol>

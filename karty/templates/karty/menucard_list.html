@@ -8,7 +8,7 @@
 <ul id="menucards" data-num-pages="{{ page.paginator.num_pages }}">
 {% for menucard in page %}
 <li>
-    <a href="{{ menucard.get_absolute_url }}">{{ menucard.name }} </a>({{ menucard.dish_set.count }} dishes, modified: {{ menucard.mod_date|date:"d M Y" }})
+    <a href="{{ menucard.get_absolute_url }}">{{ menucard.name }} </a>({{ menucard.dishes.count }} dishes, modified: {{ menucard.mod_date|date:"d M Y" }})
     <p>{{ menucard.desc }} </p>
 </li>
 {% endfor %}

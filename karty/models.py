@@ -10,7 +10,8 @@ AT_LEAST_OLDER = timedelta(minutes=30)
 
 class PublicMenuCardManager(models.Manager):
     def get_queryset(self):
-        return super(PublicMenuCardManager, self).get_queryset().annotate(num_dishes=models.Count('dish')).exclude(num_dishes=0)
+        return super(PublicMenuCardManager, self).get_queryset().annotate(
+                num_dishes=models.Count('dishes')).exclude(num_dishes=0)
 
 
 class MenuCard(models.Model):
@@ -39,7 +40,7 @@ class MenuCard(models.Model):
 
 
 class Dish(models.Model):
-    menucard = models.ForeignKey(MenuCard, on_delete=models.CASCADE)
+    menucard = models.ForeignKey(MenuCard, on_delete=models.CASCADE, related_name='dishes')
 
     name = models.CharField(max_length=50)
     desc = models.TextField("Description", max_length=200)
@@ -48,6 +49,7 @@ class Dish(models.Model):
     mod_date = models.DateTimeField("Modification date", auto_now=True)
     time = models.DurationField("Preparation time")
     vege = models.BooleanField("Vegetarian", default=False, help_text="Is it vegetarian ?")
+    photo = models.ImageField(upload_to='uploads/%Y/%m/%d/', blank=True)
 
     def __str__(self):
         return self.name
