@@ -1,14 +1,15 @@
 {% extends 'karty/base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 
-<h1>Menu cards</h1>
+<h1>{% trans 'Menu cards' %}</h1>
 
 <ul id="menucards" data-num-pages="{{ page.paginator.num_pages }}">
 {% for menucard in page %}
 <li>
-    <a href="{{ menucard.get_absolute_url }}">{{ menucard.name }} </a>({{ menucard.dishes.count }} dishes, modified: {{ menucard.mod_date|date:"d M Y" }})
+    <a href="{{ menucard.get_absolute_url }}">{{ menucard.name }} </a>{% blocktrans with tr_dish_count=menucard.dishes.count tr_mod_date=menucard.mod_date|date:"d M Y" %}({{ tr_dish_count }} dishes, modified: {{ tr_mod_date }}){% endblocktrans %}
     <p>{{ menucard.desc }} </p>
 </li>
 {% endfor %}

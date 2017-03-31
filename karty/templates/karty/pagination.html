@@ -1,6 +1,8 @@
 {% load static %}
+{% load i18n %}
 
-<h4 id="pagination">Page {{ page.number }} of {{ page.paginator.num_pages }}</h4>
+{% comment %}Translators: First number must be current page, second number - total pages.{% endcomment %}
+<h4 id="pagination">{% blocktrans with tr_pagenr=page.number tr_numpages=page.paginator.num_pages %}Page {{ tr_pagenr }} of {{ tr_numpages}}{% endblocktrans %}</h4>
 
 
 <div id="normal-links">
@@ -9,45 +11,45 @@
     {% if page.has_previous %}
     href="{% url 'karty:index' %}{{ prev_qstring }}"
     {% endif %}
-    >Previous</a>
+    >{% trans 'Previous' as tr_previous %}</a>
 
 
 <a id='next-link'
     {% if page.has_next %}
     href="{% url 'karty:index' %}{{ next_qstring }}"
     {% endif %}
-    >Next</a>
+    >{% trans 'Next' as tr_next %}</a>
 </p>
 
-<h4>Sorting:</h4>
+<h4>{% trans 'Sorting:' %}</h4>
 
 <a
    {% if request.GET.ordering and request.GET.ordering != 'pk' %}
    href="?page={{ page.number }}&ordering=pk"
    {% endif %}
-    >Default</a> /
+   >{% trans 'Default' as tr_default %}</a> /
 
 
 <a
    {% if request.GET.ordering != 'name' %}
    href="?page={{ page.number }}&ordering=name"
    {% endif %}
-    >Name</a> /
+   >{% trans 'Name' as tr_name %}</a> /
 
 <a
    {% if request.GET.ordering != 'num_dishes' %}
    href="?page={{ page.number }}&ordering=num_dishes"
    {% endif %}
-   >Dish count</a>
+   >{% trans 'Dish count' as tr_dish_count %}</a>
 </div>
 
 <div id="xhr-links" class="hidden">
-<button {% if not page.has_previous %}disabled=true{% endif %} id="prev-page" data-rest-uri="{% url 'karty:api_index' %}{{ prev_qstring }}">Previous</button>
-<button {% if not page.has_next %}disabled=true{% endif %} id="next-page" data-rest-uri="{% url 'karty:api_index' %}{{ next_qstring }}">Next</button>
+    <button {% if not page.has_previous %}disabled=true{% endif %} id="prev-page" data-rest-uri="{% url 'karty:api_index' %}{{ prev_qstring }}">{{ tr_previous }}</button>
+    <button {% if not page.has_next %}disabled=true{% endif %} id="next-page" data-rest-uri="{% url 'karty:api_index' %}{{ next_qstring }}">{{ tr_next }}</button>
 
-<h4>Sorting:</h4>
+    <h4>{% trans 'Sorting:' %}</h4>
 
-<button class="sort" id="sort-default" data-rest-uri="{% url 'karty:api_index' %}?ordering=pk">Default</button>
-<button class="sort" id="sort-name" data-rest-uri="{% url 'karty:api_index' %}?ordering=name">Name</button>
-<button class="sort" id="sort-dishes" data-rest-uri="{% url 'karty:api_index' %}?ordering=num_dishes">Dish count</button>
+<button class="sort" id="sort-default" data-rest-uri="{% url 'karty:api_index' %}?ordering=pk">{{ tr_default }}</button>
+<button class="sort" id="sort-name" data-rest-uri="{% url 'karty:api_index' %}?ordering=name">{{ tr_name }}</button>
+<button class="sort" id="sort-dishes" data-rest-uri="{% url 'karty:api_index' %}?ordering=num_dishes">{{ tr_dish_count }}</button>
 </div>

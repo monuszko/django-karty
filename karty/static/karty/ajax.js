@@ -27,9 +27,6 @@ function sortClickHandler(evnt) {
 
 
 function updatePage(path){
-    // http://127.0.0.1:8000/karty/api/menucards/?page=2
-    //
-    
     var xhr = new XMLHttpRequest();
     xhr.open('GET', path);
     xhr.setRequestHeader('Accept', 'application/json');
@@ -56,8 +53,9 @@ function updatePage(path){
 
 function insertJSON(json) {
     var ul = document.getElementById('menucards');
-    var pagination_text = 'Page ' + json['page'] + ' of ' + ul.dataset.numPages;
-    document.getElementById('pagination').innerHTML = pagination_text;
+    var pagin_text = gettext('Page %s of %s');
+    pagin_text = interpolate(pagin_text, [json['page'], ul.dataset.numPages]);
+    document.getElementById('pagination').innerHTML = pagin_text;
 
     while (ul.firstChild) {
         ul.removeChild(ul.firstChild);
@@ -72,8 +70,8 @@ function insertJSON(json) {
         a.appendChild(link_text);
         li.appendChild(a);
 
-        var remaining = ' (' + mcard['num_dishes'] + 
-                ' dishes, modified: ' + mcard['mod_date'] + ')';
+        var remaining = gettext('(%(num_dishes)s dishes, modified: %(mod_date)s)');
+        remaining = interpolate(remaining, mcard, true);
         remaining = document.createTextNode(remaining);
         li.appendChild(remaining);
         var p = document.createElement('p');
@@ -95,7 +93,6 @@ function insertJSON(json) {
         next.disabled = false;
         next.dataset.restUri = json['next'];
     }
-
 }
 
 

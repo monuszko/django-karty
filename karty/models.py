@@ -1,7 +1,7 @@
 from datetime import timedelta
 
 from django.db import models
-
+from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 
 
@@ -16,9 +16,9 @@ class PublicMenuCardManager(models.Manager):
 
 class MenuCard(models.Model):
     name = models.CharField(max_length=50, unique=True)
-    desc = models.TextField("Description", max_length=200)
-    pub_date = models.DateTimeField("Publication date", auto_now_add=True)
-    mod_date = models.DateTimeField("Modification date", auto_now=True)
+    desc = models.TextField(_("Description"), max_length=200)
+    pub_date = models.DateTimeField(_("Publication date"), auto_now_add=True)
+    mod_date = models.DateTimeField(_("Modification date"), auto_now=True)
 
     objects = models.Manager()
     public = PublicMenuCardManager()
@@ -43,17 +43,17 @@ class Dish(models.Model):
     menucard = models.ForeignKey(MenuCard, on_delete=models.CASCADE, related_name='dishes')
 
     name = models.CharField(max_length=50)
-    desc = models.TextField("Description", max_length=200)
+    desc = models.TextField(_("Description"), max_length=200)
     price = models.DecimalField(max_digits=5, decimal_places=2)
-    pub_date = models.DateTimeField("Publication date", auto_now_add=True)
-    mod_date = models.DateTimeField("Modification date", auto_now=True)
-    time = models.DurationField("Preparation time")
-    vege = models.BooleanField("Vegetarian", default=False, help_text="Is it vegetarian ?")
+    pub_date = models.DateTimeField(_("Publication date"), auto_now_add=True)
+    mod_date = models.DateTimeField(_("Modification date"), auto_now=True)
+    time = models.DurationField(_("Preparation time"))
+    vege = models.BooleanField(_("Vegetarian"), default=False, help_text=_("Is it vegetarian ?"))
     photo = models.ImageField(upload_to='uploads/%Y/%m/%d/', blank=True)
 
     def __str__(self):
         return self.name
 
     class Meta:
-        verbose_name_plural = "dishes"
+        verbose_name_plural = _("dishes")
 

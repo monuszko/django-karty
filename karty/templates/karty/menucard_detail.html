@@ -1,5 +1,6 @@
+{% load i18n %}
 <h1>{{ menucard.name }}</h1>
-<h4>Added: {{ menucard.pub_date }} {% if menucard.was_modifed %}(modified: {{ menucard.mod_date }}){% endif %}</h4>
+<h4>{% trans 'Added:' %} {{ menucard.pub_date }} {% if menucard.was_modifed %}({% trans 'modified:' %} {{ menucard.mod_date }}){% endif %}</h4>
 
 <p>{{ menucard.desc }}
 
@@ -9,7 +10,6 @@
         {% if dish.photo %}
         <img src="{{ dish.photo.url }}"/>
         {% endif %}
-    
     </li>
     {% endfor %}
 </ol>
