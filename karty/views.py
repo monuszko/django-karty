@@ -44,14 +44,12 @@ class MenuCardList(ListView):
         context['next_qstring'] = next_qstring
         return context
 
-
     def get_queryset(self, **kwargs):
         qs = self.queryset
         ordering = self.request.GET.get('ordering')
         if ordering in ('name' ,'num_dishes'):
             qs = qs.order_by(ordering)
         return qs
-
 
 
 class MenuCardDetail(DetailView):

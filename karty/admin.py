@@ -9,6 +9,8 @@ class DishInline(admin.TabularInline):
 
 
 class MenuCardAdmin(admin.ModelAdmin):
+    list_display = ('name', 'pub_date', 'mod_date')
+    readonly_fields = ('pub_date', 'mod_date')
     inlines = [DishInline]
 
 

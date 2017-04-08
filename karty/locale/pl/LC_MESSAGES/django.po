@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-31 18:16+0200\n"
+"POT-Creation-Date: 2017-04-08 22:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,33 +20,45 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
-#: models.py:19 models.py:46
+#: models.py:19 models.py:50
 msgid "Description"
 msgstr "Opis"
 
-#: models.py:20 models.py:48
+#: models.py:20 models.py:52
 msgid "Publication date"
 msgstr "Data dodania"
 
-#: models.py:21 models.py:49
+#: models.py:21 models.py:53
 msgid "Modification date"
 msgstr "Data aktualizacji"
 
-#: models.py:50
+#: models.py:42
+msgid "menu cards"
+msgstr "karty menu"
+
+#: models.py:43
+msgid "menu card"
+msgstr "karta menu"
+
+#: models.py:54
 msgid "Preparation time"
 msgstr "Czas przyrządzania"
 
-#: models.py:51
+#: models.py:55
 msgid "Vegetarian"
 msgstr "Wegetariańskie"
 
-#: models.py:51
+#: models.py:55
 msgid "Is it vegetarian ?"
 msgstr "Czy jest wegetariańskie ?"
 
-#: models.py:58
+#: models.py:62
 msgid "dishes"
 msgstr "dania"
+
+#: models.py:63
+msgid "dish"
+msgstr "danie"
 
 #: templates/karty/menucard_detail.html:3
 msgid "Added:"
@@ -89,7 +101,7 @@ msgstr "Domyślne"
 
 #: templates/karty/pagination.html:37
 msgid "Name"
-msgstr "Imię"
+msgstr "Nazwa"
 
 #: templates/karty/pagination.html:43
 msgid "Dish count"

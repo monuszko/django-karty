@@ -38,6 +38,10 @@ class MenuCard(models.Model):
             return True
         return False
 
+    class Meta:
+        verbose_name_plural = _("menu cards")
+        verbose_name = _("menu card")
+
 
 class Dish(models.Model):
     menucard = models.ForeignKey(MenuCard, on_delete=models.CASCADE, related_name='dishes')
@@ -56,4 +60,5 @@ class Dish(models.Model):
 
     class Meta:
         verbose_name_plural = _("dishes")
+        verbose_name = _("dish")
 
