@@ -1,11 +1,12 @@
 from datetime import timedelta
 
 from django.db import models
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 
 
-AT_LEAST_OLDER = timedelta(minutes=30)
+AT_LEAST_NEWER = timedelta(minutes=30)
 
 
 class PublicMenuCardManager(models.Manager):
@@ -34,7 +35,10 @@ class MenuCard(models.Model):
         Template method to make it easier no to display trivial edits soon
         after publication.
         """
-        if self.mod_date > self.pub_date + AT_LEAST_OLDER:
+        # No time travel:
+        if self.mod_date > timezone.now() or self.pub_date > timezone.now():
+            return False
+        if self.mod_date - AT_LEAST_NEWER > self.pub_date:
             return True
         return False
 

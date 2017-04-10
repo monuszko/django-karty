@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-08 22:34+0200\n"
+"POT-Creation-Date: 2017-04-11 00:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,43 +20,43 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
-#: models.py:19 models.py:50
+#: models.py:20 models.py:54
 msgid "Description"
 msgstr "Opis"
 
-#: models.py:20 models.py:52
+#: models.py:21 models.py:56
 msgid "Publication date"
 msgstr "Data dodania"
 
-#: models.py:21 models.py:53
+#: models.py:22 models.py:57
 msgid "Modification date"
 msgstr "Data aktualizacji"
 
-#: models.py:42
+#: models.py:46
 msgid "menu cards"
 msgstr "karty menu"
 
-#: models.py:43
+#: models.py:47
 msgid "menu card"
 msgstr "karta menu"
 
-#: models.py:54
+#: models.py:58
 msgid "Preparation time"
 msgstr "Czas przyrządzania"
 
-#: models.py:55
+#: models.py:59
 msgid "Vegetarian"
 msgstr "Wegetariańskie"
 
-#: models.py:55
+#: models.py:59
 msgid "Is it vegetarian ?"
 msgstr "Czy jest wegetariańskie ?"
 
-#: models.py:62
+#: models.py:66
 msgid "dishes"
 msgstr "dania"
 
-#: models.py:63
+#: models.py:67
 msgid "dish"
 msgstr "danie"
 
@@ -76,6 +76,12 @@ msgstr "Karty menu"
 #, python-format
 msgid "(%(tr_dish_count)s dishes, modified: %(tr_mod_date)s)"
 msgstr "(%(tr_dish_count)s dań, aktualizacja: %(tr_mod_date)s)"
+
+#: templates/karty/menucard_list.html:16
+#, fuzzy
+#| msgid "No menu cards are available"
+msgid "No menu cards are available."
+msgstr "Brak kart menu"
 
 #. Translators: First number must be current page, second number - total pages.
 #: templates/karty/pagination.html:5
@@ -106,3 +112,7 @@ msgstr "Nazwa"
 #: templates/karty/pagination.html:43
 msgid "Dish count"
 msgstr "Liczba dań"
+
+#: tests/test_views.py:16
+msgid "No menu cards are available"
+msgstr "Brak kart menu"

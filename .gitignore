@@ -4,5 +4,6 @@
 
 manage.py
 db.sqlite3
+.coverage
 
 project_karty/*

@@ -3,6 +3,7 @@ import factory
 import random
 
 from faker import Faker
+from unittest.mock import patch
 
 from .models import MenuCard, Dish
 
@@ -27,8 +28,11 @@ class MenuCardFactory(factory.django.DjangoModelFactory):
         if pub_date is not None:
             obj.pub_date = pub_date
         if mod_date is not None:
-            obj.mod_date = mod_date
-        obj.save()
+            with patch('django.utils.timezone.now') as mock_now:
+                mock_now.return_value = mod_date
+                obj.save()
+        else:
+            obj.save()
         return obj
 
 

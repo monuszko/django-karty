@@ -12,6 +12,8 @@
     <a href="{{ menucard.get_absolute_url }}">{{ menucard.name }} </a>{% blocktrans with tr_dish_count=menucard.dishes.count tr_mod_date=menucard.mod_date|date:"d M Y" %}({{ tr_dish_count }} dishes, modified: {{ tr_mod_date }}){% endblocktrans %}
     <p>{{ menucard.desc }} </p>
 </li>
+{% empty %}
+<li>{% trans 'No menu cards are available.' %}</li>
 {% endfor %}
 </ul>
 
