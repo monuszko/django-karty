@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-11 00:03+0200\n"
+"POT-Creation-Date: 2017-04-11 18:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,10 +78,8 @@ msgid "(%(tr_dish_count)s dishes, modified: %(tr_mod_date)s)"
 msgstr "(%(tr_dish_count)s dań, aktualizacja: %(tr_mod_date)s)"
 
 #: templates/karty/menucard_list.html:16
-#, fuzzy
-#| msgid "No menu cards are available"
 msgid "No menu cards are available."
-msgstr "Brak kart menu"
+msgstr "Brak kart menu."
 
 #. Translators: First number must be current page, second number - total pages.
 #: templates/karty/pagination.html:5
@@ -112,7 +110,3 @@ msgstr "Nazwa"
 #: templates/karty/pagination.html:43
 msgid "Dish count"
 msgstr "Liczba dań"
-
-#: tests/test_views.py:16
-msgid "No menu cards are available"
-msgstr "Brak kart menu"

@@ -1,11 +1,13 @@
 from faker import Faker
 
 from django.test import TestCase
+from django.utils import timezone
 
 from karty.factories import MenuCardFactory
 from karty.models import MenuCard
 
 fake = Faker()
+tzinfo = timezone.get_default_timezone()
 
 
 class MenuCardFactoryTests(TestCase):
@@ -34,7 +36,7 @@ class MenuCardFactoryTests(TestCase):
         """
         pub_date passed to the factory should be assigned to the object.
         """
-        date = fake.date_time()
+        date = fake.date_time(tzinfo=tzinfo)
         menucard = MenuCardFactory(pub_date=date)
 
         self.assertEqual(menucard.pub_date, date) 
@@ -43,7 +45,7 @@ class MenuCardFactoryTests(TestCase):
         """
         mod_date passed to the factory should be assigned to the object.
         """
-        date = fake.date_time()
+        date = fake.date_time(tzinfo=tzinfo)
         menucard = MenuCardFactory(mod_date=date)
 
         self.assertEqual(menucard.mod_date, date) 
