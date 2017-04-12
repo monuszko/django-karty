@@ -3,6 +3,5 @@ source = karty
 branch = True
 omit =
     karty/migrations/*
-    */urls.py
     */test_*
     *__init__.py
