@@ -12,7 +12,8 @@ AT_LEAST_NEWER = timedelta(minutes=30)
 class PublicMenuCardManager(models.Manager):
     def get_queryset(self):
         return super(PublicMenuCardManager, self).get_queryset().annotate(
-                num_dishes=models.Count('dishes')).exclude(num_dishes=0)
+                num_dishes=models.Count('dishes')).exclude(
+                        num_dishes=0).prefetch_related('dishes')
 
 
 class MenuCard(models.Model):

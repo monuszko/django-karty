@@ -3,15 +3,15 @@ from faker import Faker
 from django.test import TestCase
 from django.utils import timezone
 
-from karty.factories import MenuCardFactory
-from karty.models import MenuCard
+from karty.factories import MenuCardFactory, DishFactory
+from karty.models import MenuCard, Dish
 
 fake = Faker()
 tzinfo = timezone.get_default_timezone()
 
 
 class MenuCardFactoryTests(TestCase):
-    def test_objects_are_created(self):
+    def test_menucard_objects_are_created(self):
         """
         Test that calling factory results in new objects.
         """
@@ -20,7 +20,7 @@ class MenuCardFactoryTests(TestCase):
 
         self.assertEqual(MenuCard.objects.all().count(), 13)
 
-    def test_name_is_unique(self):
+    def test_menucard_name_is_unique(self):
         """
         Name field should be generated unique.
         """
@@ -50,3 +50,25 @@ class MenuCardFactoryTests(TestCase):
 
         self.assertEqual(menucard.mod_date, date) 
 
+
+class DishFactoryTests(TestCase):
+    def test_dish_objects_are_created(self):
+        """
+        Test that calling factory results in new objects.
+        """
+        for x in range(13):
+            DishFactory()
+
+        self.assertEqual(Dish.objects.all().count(), 13)
+
+    def test_dish_name_is_unique(self):
+        """
+        Name field should be generated unique.
+        """
+        names = set()
+        num_dishes = 800
+        for x in range(num_dishes):
+            dish = MenuCardFactory()
+            names.add(dish.name)
+
+        self.assertEqual(len(names), num_dishes)

@@ -1,4 +1,7 @@
+{% extends 'karty/base.html' %}
 {% load i18n %}
+
+{% block content %}
 <h1>{{ menucard.name }}</h1>
 <h4>{% trans 'Added:' %} {{ menucard.pub_date }} {% if menucard.was_modifed %}({% trans 'modified:' %} {{ menucard.mod_date }}){% endif %}</h4>
 
@@ -13,3 +16,4 @@
     </li>
     {% endfor %}
 </ol>
+{% endblock content %}

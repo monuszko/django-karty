@@ -18,7 +18,11 @@ class MenuCardFactory(factory.django.DjangoModelFactory):
 
     @factory.sequence
     def name(n):
-        return 'Menu %.42s%3d' % (' '.join(fake.words(nb=5)), n)
+        number = str(n)
+        remaining_len = 50 - 6 - len(number)
+        return 'Menu {:.{width}} {}'.format(
+                ' '.join(fake.words(nb=5)), number, width=remaining_len
+                )
 
     @classmethod
     def _create(cls, target_class, *args, **kwargs):
@@ -50,4 +54,8 @@ class DishFactory(factory.django.DjangoModelFactory):
 
     @factory.sequence
     def name(n):
-        return 'Dish %.42s%3d' % (' '.join(fake.words(nb=5)), n)
+        number = str(n)
+        remaining_len = 50 - 6 - len(number)
+        return 'Menu {:.{width}} {}'.format(
+                ' '.join(fake.words(nb=5)), number,  width=remaining_len
+                )
