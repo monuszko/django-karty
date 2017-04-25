@@ -21,27 +21,30 @@ Quick start
 
 
 3. To enable translations, add JavascriptCatalog to your project's urls.py::
+
     from django.views.i18n import JavaScriptCatalog
     ...
-
     url('^jsi18n/karty/$',
         JavaScriptCatalog.as_view(packages=['karty']),
         name='javascript-catalog'),
 
 
 4. Configure rest framework pagination::
+
     REST_FRAMEWORK = {
         'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
         'PAGE_SIZE': 10
         }
 
 
-5. Run `python manage.py migrate` to create the karty models.
+5. Make sure you have the packages from `requirements.txt`.
 
-6. (Optional) you may run `python manage.py create_sample_data` and
+6. Run `python manage.py migrate` to create the karty models.
+
+7. (Optional) you may run `python manage.py create_sample_data` and
     `python manage_py destroy_app_data` to delete all the instances once done.
 
-7. Start the development server and visit http://127.0.0.1:8000/admin/
+8. Start the development server and visit http://127.0.0.1:8000/admin/
    to create menu cards and dishes (you'll need the Admin app enabled).
 
-8. Visit http://127.0.0.1:8000/karty/ see menu cards.
+9. Visit http://127.0.0.1:8000/karty/ see menu cards.
