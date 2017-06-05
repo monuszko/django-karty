@@ -7,13 +7,15 @@
 
 <p>{{ menucard.desc }}
 
-<ol>
+<div class="flex-list">
     {% for dish in menucard.dishes.all %}
-    <li>{{ dish.name }}
+    <div class="flex-item">
+        <span class="glyphicon glyphicon-picture {% if not dish.photo %}invisible{% endif %}">
         {% if dish.photo %}
-        <img src="{{ dish.photo.url }}"/>
+            <img src="{{ dish.photo.url }}" class="img-circle" />
         {% endif %}
-    </li>
+        </span>{{ dish.name }}
+    </div>
     {% endfor %}
-</ol>
+</div>
 {% endblock content %}

@@ -56,6 +56,6 @@ class DishFactory(factory.django.DjangoModelFactory):
     def name(n):
         number = str(n)
         remaining_len = 50 - 6 - len(number)
-        return 'Menu {:.{width}} {}'.format(
+        return 'Dish {:.{width}} {}'.format(
                 ' '.join(fake.words(nb=5)), number,  width=remaining_len
                 )

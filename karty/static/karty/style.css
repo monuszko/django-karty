@@ -1,7 +1,44 @@
-li a {
-    color: green;
-}
-
 .hidden {
     display: none;
+}
+
+.invisible {
+    display: hidden;
+}
+
+.flex-list {
+    display: flex;
+    flex-flow: column wrap;
+    max-height: 100%;
+    align-content: flex-start;
+    overflow: auto;
+}
+
+.flex-item {
+    margin: 0px 40px 20px 0px;
+}
+
+html, body {
+    height: 90%;
+}
+
+
+.glyphicon-picture img {
+    display: none;
+}
+
+.glyphicon-picture:hover img {
+  display:block;
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:1000;
+  width:auto;
+  max-width:320px;
+  min-height:128px;
+  border:1px solid black;
+  margin-top:12px;
+  margin-left:32px;
+  overflow:hidden;
+  padding:8px;
 }

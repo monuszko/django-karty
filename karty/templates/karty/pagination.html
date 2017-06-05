@@ -44,12 +44,14 @@
 </div>
 
 <div id="xhr-links" class="hidden">
-    <button {% if not page.has_previous %}disabled=true{% endif %} id="prev-page" data-rest-uri="{% url 'karty:api_index' %}{{ prev_qstring }}">{{ tr_previous }}</button>
-    <button {% if not page.has_next %}disabled=true{% endif %} id="next-page" data-rest-uri="{% url 'karty:api_index' %}{{ next_qstring }}">{{ tr_next }}</button>
+    <button class="btn btn-default" {% if not page.has_previous %}disabled=true{% endif %} id="prev-page" data-rest-uri="{% url 'karty:api_index' %}{{ prev_qstring }}">{{ tr_previous }}</button>
+    <button class="btn btn-default" {% if not page.has_next %}disabled=true{% endif %} id="next-page" data-rest-uri="{% url 'karty:api_index' %}{{ next_qstring }}">{{ tr_next }}</button>
 
     <h4>{% trans 'Sorting:' %}</h4>
 
-<button class="sort" id="sort-default" data-rest-uri="{% url 'karty:api_index' %}?ordering=pk">{{ tr_default }}</button>
-<button class="sort" id="sort-name" data-rest-uri="{% url 'karty:api_index' %}?ordering=name">{{ tr_name }}</button>
-<button class="sort" id="sort-dishes" data-rest-uri="{% url 'karty:api_index' %}?ordering=num_dishes">{{ tr_dish_count }}</button>
+    <div class="btn-group">
+<button class="sort btn btn-default" id="sort-default" data-rest-uri="{% url 'karty:api_index' %}?ordering=pk">{{ tr_default }}</button>
+<button class="sort btn btn-default" id="sort-name" data-rest-uri="{% url 'karty:api_index' %}?ordering=name">{{ tr_name }}</button>
+<button class="sort btn btn-default" id="sort-dishes" data-rest-uri="{% url 'karty:api_index' %}?ordering=num_dishes">{{ tr_dish_count }}</button>
+    </div>
 </div>
