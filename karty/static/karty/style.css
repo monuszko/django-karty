@@ -6,6 +6,7 @@
     display: hidden;
 }
 
+
 .flex-list {
     display: flex;
     flex-flow: column wrap;
@@ -30,15 +31,14 @@ html, body {
 .glyphicon-picture:hover img {
   display:block;
   position:absolute;
-  top:0;
-  left:0;
-  z-index:1000;
-  width:auto;
+  z-index:10;
   max-width:320px;
+  max-height: 320px;
   min-height:128px;
+  padding:8px;
   border:1px solid black;
   margin-top:12px;
   margin-left:32px;
   overflow:hidden;
-  padding:8px;
+  background-color: #ABCDEF;
 }

@@ -43,6 +43,9 @@ class MenuCard(models.Model):
             return True
         return False
 
+    def dishes_by_section(self):
+        return self.dishes.order_by('section')
+
     class Meta:
         verbose_name_plural = _("menu cards")
         verbose_name = _("menu card")
@@ -59,6 +62,7 @@ class Dish(models.Model):
     time = models.DurationField(_("Preparation time"))
     vege = models.BooleanField(_("Vegetarian"), default=False, help_text=_("Is it vegetarian ?"))
     photo = models.ImageField(upload_to='uploads/%Y/%m/%d/', blank=True)
+    section = models.CharField(_("Menu card section"), default="", blank=True, max_length=50)
 
     def __str__(self):
         return self.name

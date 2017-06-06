@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-11 18:41+0200\n"
+"POT-Creation-Date: 2017-06-06 20:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,93 +20,98 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
-#: models.py:20 models.py:54
+#: karty/models.py:21 karty/models.py:58
 msgid "Description"
 msgstr "Opis"
 
-#: models.py:21 models.py:56
+#: karty/models.py:22 karty/models.py:60
 msgid "Publication date"
 msgstr "Data dodania"
 
-#: models.py:22 models.py:57
+#: karty/models.py:23 karty/models.py:61
 msgid "Modification date"
 msgstr "Data aktualizacji"
 
-#: models.py:46
+#: karty/models.py:50
 msgid "menu cards"
 msgstr "karty menu"
 
-#: models.py:47
+#: karty/models.py:51
 msgid "menu card"
 msgstr "karta menu"
 
-#: models.py:58
+#: karty/models.py:62
 msgid "Preparation time"
 msgstr "Czas przyrządzania"
 
-#: models.py:59
+#: karty/models.py:63
 msgid "Vegetarian"
 msgstr "Wegetariańskie"
 
-#: models.py:59
+#: karty/models.py:63
 msgid "Is it vegetarian ?"
 msgstr "Czy jest wegetariańskie ?"
 
-#: models.py:66
+#: karty/models.py:65
+msgid "Menu card section"
+msgstr "Sekcja menu"
+
+#: karty/models.py:71
 msgid "dishes"
 msgstr "dania"
 
-#: models.py:67
+#: karty/models.py:72
 msgid "dish"
 msgstr "danie"
 
-#: templates/karty/menucard_detail.html:3
+#: karty/templates/karty/menucard_detail.html:6
 msgid "Added:"
 msgstr "Dodane:"
 
-#: templates/karty/menucard_detail.html:3
+#: karty/templates/karty/menucard_detail.html:6
 msgid "modified:"
 msgstr "zmodyfikowane:"
 
-#: templates/karty/menucard_list.html:7
+#: karty/templates/karty/menucard_list.html:7
 msgid "Menu cards"
 msgstr "Karty menu"
 
-#: templates/karty/menucard_list.html:12
+#: karty/templates/karty/menucard_list.html:12
 #, python-format
 msgid "(%(tr_dish_count)s dishes, modified: %(tr_mod_date)s)"
 msgstr "(%(tr_dish_count)s dań, aktualizacja: %(tr_mod_date)s)"
 
-#: templates/karty/menucard_list.html:16
+#: karty/templates/karty/menucard_list.html:16
 msgid "No menu cards are available."
 msgstr "Brak kart menu."
 
 #. Translators: First number must be current page, second number - total pages.
-#: templates/karty/pagination.html:5
+#: karty/templates/karty/pagination.html:5
 #, python-format
 msgid "Page %(tr_pagenr)s of %(tr_numpages)s"
 msgstr "Strona %(tr_pagenr)s z %(tr_numpages)s"
 
-#: templates/karty/pagination.html:14
+#: karty/templates/karty/pagination.html:14
 msgid "Previous"
 msgstr "Poprzednia"
 
-#: templates/karty/pagination.html:21
+#: karty/templates/karty/pagination.html:21
 msgid "Next"
 msgstr "Następna"
 
-#: templates/karty/pagination.html:24 templates/karty/pagination.html:50
+#: karty/templates/karty/pagination.html:24
+#: karty/templates/karty/pagination.html:50
 msgid "Sorting:"
 msgstr "Sortowanie:"
 
-#: templates/karty/pagination.html:30
+#: karty/templates/karty/pagination.html:30
 msgid "Default"
 msgstr "Domyślne"
 
-#: templates/karty/pagination.html:37
+#: karty/templates/karty/pagination.html:37
 msgid "Name"
 msgstr "Nazwa"
 
-#: templates/karty/pagination.html:43
+#: karty/templates/karty/pagination.html:43
 msgid "Dish count"
 msgstr "Liczba dań"

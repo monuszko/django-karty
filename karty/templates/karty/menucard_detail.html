@@ -8,13 +8,19 @@
 <p>{{ menucard.desc }}
 
 <div class="flex-list">
-    {% for dish in menucard.dishes.all %}
+    {% for dish in menucard.dishes_by_section %}
+    {% if dish.section %}
+    {% ifchanged %}<h3 class="flex-item">{{ dish.section }}</h3>{% endifchanged %}
+    {% endif %}
     <div class="flex-item">
-        <span class="glyphicon glyphicon-picture {% if not dish.photo %}invisible{% endif %}">
-        {% if dish.photo %}
-            <img src="{{ dish.photo.url }}" class="img-circle" />
+        {% if not dish.photo  %}
+            <span class="glyphicon glyphicon-picture invisible"></span>
+        {% else %}
+            <span class="glyphicon glyphicon-picture">
+                <img src="{{ dish.photo.url }}" class="img-circle" />
+            </span>
         {% endif %}
-        </span>{{ dish.name }}
+        {{ dish.name }}
     </div>
     {% endfor %}
 </div>
